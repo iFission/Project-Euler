@@ -8,7 +8,7 @@ def main():
 
 	for x in range(3, n):
 		print("x is: {x}".format(x=x))
-		if n % x == 0 and is_prime(x:
+		if n % x == 0 and is_prime(x):
 			f = x
 			print(f)
 
