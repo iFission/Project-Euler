@@ -2,35 +2,28 @@
 
 # What is the largest prime factor of the number 600851475143 ?
 
-# using Eratosthenes sieve
+import math as m
 
-from time import time
+def main():
+	n = 600851475143
+	f = 0
 
-def sieve(n):
-	prime_list = [False] * 2 + [True] * (n - 1) # faster version of following
-	# create a list of n Trues, later marked False
-	# remaining list is all prime[index] = True
-	# number = index
-	# prime_list = [True for i in range(n+1)] # n + 1 so n is assign to i
-	p = 2
-	while (p * p < n): # reduce no. of computations, as lower multiples of p are already marked
-		if prime_list[2]: #  == True
-			for i in range(p * p, n + 1, p): # reduce no. of computations, as lower multiples of p are already marked
-				prime_list[i] = False
-		p += 1
-		# print(p)
-	return prime_list
+	for x in range(3, int(m.sqrt(n))): # stop at the square root of n
+		# print("x is: {x}".format(x=x))
+		if n % x == 0 and is_prime(x) and f < x:
+			f = x
+
+			if is_prime(int(n / x)) and f < x: # check the complementary factor is prime
+				f = x
+
+			print(f)
+
+def is_prime(n): # ensure n only has itself as a factor
+	for x in range(2, n - 1): # start at 2, skip 1, stop at n-1, hence min n = 3
+		# print("x is: {x} for {n}".format(x=x, n=n))
+		if n % x == 0:
+			return False
+	return True
 
 if __name__ == '__main__':
-	n = 10000000
-
-	start = time()
-
-	prime = sieve(n)
-	# print([i for i in range(n) if prime[i] == True]) # list comprehension of following
-	# for i in range(n):
-	# 	if prime[i] == True:
-	# 		print(i)
-
-	end = time()
-	print ("sieve in", end - start, "milliseconds.")
+	main()
