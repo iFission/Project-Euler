@@ -2,24 +2,27 @@
 
 # What is the largest prime factor of the number 600851475143 ?
 
+# using Eratosthenes sieve
+
 def main():
 	n = 600851475143
-	f = 0
+	prime = sieve(n)
 
-	for x in range(3, n):
-		print("x is: {x}".format(x=x))
-		if n % x == 0 and is_prime(x):
-			f = x
-			print(f)
+	print([i for i in range(n) if prime[i] == True]) # list comprehension of following
+	# for i in range(n):
+	# 	if prime[i] == True:
+	# 		print(i)
 
-	print(f)
-
-def is_prime(n): # ensure n only has itself as a factor
-	for x in range(2, n - 1): # start at 2, skip 1, stop at n-1, hence min n = 3
-		print("x is: {x} for {n}".format(x=x, n=n))
-		if n % x == 0:
-			return False
-	return True
+def sieve(n):
+	prime_list = [True for i in range(n+1)]
+	p = 2
+	while (p * p < n):
+		if prime_list[2] == True:
+			for i in range(p * 2, n + 1, p):
+				prime_list[i] = False
+		p = p + 1
+		# print(p)
+	return prime_list
 
 if __name__ == '__main__':
 	main()
