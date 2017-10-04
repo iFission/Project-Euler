@@ -13,7 +13,8 @@ def main():
 		if n % x == 0 and is_prime(x) and f < x:
 			f = x
 			n = int(n / x)
-			# print(n)
+			# if is_prime(int(n / x)) and f < x: # check the complementary factor is prime
+			# 	f = x
 			print(f)
 
 def is_prime(n): # ensure n only has itself as a factor
