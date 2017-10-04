@@ -22,6 +22,9 @@ def main():
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> parent of 1473b44... sieve with sqrt, complementary
+=======
 >>>>>>> parent of 1473b44... sieve with sqrt, complementary
 =======
 >>>>>>> parent of 1473b44... sieve with sqrt, complementary
