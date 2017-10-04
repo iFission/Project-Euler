@@ -15,7 +15,6 @@ def main():
 
 			if is_prime(int(n / x)) and f < x: # check the complementary factor is prime
 				f = x
-
 			print(f)
 
 def is_prime(n): # ensure n only has itself as a factor
