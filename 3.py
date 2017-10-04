@@ -12,8 +12,15 @@ def main():
 		# print("x is: {x}".format(x=x))
 		if n % x == 0 and is_prime(x) and f < x:
 			f = x
+<<<<<<< HEAD
 			n = int(n / x)
 			# print(n)
+=======
+
+			if is_prime(int(n / x)) and f < x: # check the complementary factor is prime
+				f = x
+
+>>>>>>> parent of 1473b44... sieve with sqrt, complementary
 			print(f)
 
 def is_prime(n): # ensure n only has itself as a factor
