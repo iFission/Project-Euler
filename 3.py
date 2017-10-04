@@ -13,6 +13,7 @@ def main():
 		if n % x == 0 and is_prime(x) and f < x:
 			f = x
 <<<<<<< HEAD
+<<<<<<< HEAD
 			n = int(n / x)
 			# print(n)
 =======
@@ -30,6 +31,10 @@ def main():
 >>>>>>> parent of 1473b44... sieve with sqrt, complementary
 =======
 >>>>>>> parent of 1473b44... sieve with sqrt, complementary
+=======
+			n = int(n / x)
+			# print(n)
+>>>>>>> master
 			print(f)
 
 def is_prime(n): # ensure n only has itself as a factor
