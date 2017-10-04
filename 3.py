@@ -20,6 +20,9 @@ def main():
 			if is_prime(int(n / x)) and f < x: # check the complementary factor is prime
 				f = x
 
+<<<<<<< HEAD
+>>>>>>> parent of 1473b44... sieve with sqrt, complementary
+=======
 >>>>>>> parent of 1473b44... sieve with sqrt, complementary
 			print(f)
 
