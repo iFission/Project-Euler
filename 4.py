@@ -2,8 +2,6 @@
 
 # Find the largest palindrome made from the product of two 3-digit numbers.
 
-<<<<<<< HEAD
-=======
 # product of m digits and n numbers
 
 import sys
@@ -45,4 +43,3 @@ if __name__ == '__main__':
 	p.compute()
 
 	# print(p.min) # able to print as p.min is an int
->>>>>>> master
