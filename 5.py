@@ -21,23 +21,21 @@ def sieve(n):
 		# print(p)
 	return prime_list
 
-def primefac(n):
+def primefac(n, sieved):
 	factor = []
-	sieved = sieve(n)
 	for i in range(len(sieved)):
 		# print((sieved))
 		# print("1", n, i)
-		while sieved[i] and n % i == 0 and n != 1:
+		while sieved[i] and n % i == 0 and n > 1:
 			# print(n, i)
 			factor += [i]
 			n //= i
 	return factor
 
-def LCM(n):
+def LCM(n, sieved):
 	LCM = []
-	sieved = sieve(n)
 	for i in range(len(sieved)):
-		primefacd = primefac(i)
+		primefacd = primefac(i, sieved)
 		x = 1
 		for j in range(1, i + 1):
 			# print(j, primefacd.count(j), LCM.count(j))
@@ -48,7 +46,8 @@ def LCM(n):
 
 def product(n):
 	product = 1
-	LCMd = LCM(n)
+	sieved = sieve(n)
+	LCMd = LCM(n, sieved)
 
 	for i in range(len(LCMd)):
 		product *= LCMd[i]
