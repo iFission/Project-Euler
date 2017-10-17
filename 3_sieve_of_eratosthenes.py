@@ -4,6 +4,7 @@
 
 # using Eratosthenes sieve
 
+import sys
 from time import time
 
 def sieve(n):
@@ -22,12 +23,12 @@ def sieve(n):
 	return prime_list
 
 if __name__ == '__main__':
-	n = 103
+	n = int(sys.argv[1])
 
 	start = time()
 
 	prime = sieve(n)
-	print([i for i in range(len(prime)) if prime[i] == True]) # list comprehension of following
+	print([i for i in range(len(prime)) if prime[i]]) # list comprehension of following
 	# for i in range(n):
 	# 	if prime[i] == True:
 	# 		print(i)
