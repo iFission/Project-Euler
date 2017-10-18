@@ -53,13 +53,11 @@ if __name__ == '__main__':
 	number = str(number) # convert number to str to allow for [] access
 	n = int(sys.argv[1]) # number of adjacent digits
 
+	start = time()
+
 	# print(product_func(number, n, 17))
 	product_largest, index_largest = largest_func(number, n)
 	print(product_largest, index_largest, [number[i] for i in range(index_largest, index_largest + n)])
-
-	start = time()
-
-
 
 	end = time()
 	print (end - start, "milliseconds.")
