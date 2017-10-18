@@ -1,4 +1,2 @@
-
-file
-
-3.py
+*.pyc
+*.pdf
