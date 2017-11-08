@@ -2,10 +2,13 @@
 
 # Find the sum of all the primes below two million.
 
+
 import sys
 from time import time
 
-def sieve(n):
+
+# implements sieve of eratosthenes, which returns a list of prime numbers below n
+def sieve_of_eratosthenes(n):
 	prime_list = [False] * 2 + [True] * (n - 1) # faster version of following, + to add arrays together
 	# create a list of n Trues, later marked False
 	# remaining list is all prime[index] = True
@@ -20,8 +23,9 @@ def sieve(n):
 		# print(p)
 	return prime_list
 
+
 def sum_primes(n):
-	prime_list = sieve(n)
+	prime_list = sieve_of_eratosthenes(n)
 	sum = 0
 
 	for i in range(len(prime_list)):
@@ -30,16 +34,17 @@ def sum_primes(n):
 			sum += i
 	return sum
 
-if __name__ == '__main__':
 
-	n = int(sys.argv[1])
+if __name__ == '__main__':
 
 	start = time()
 
+	n = int(sys.argv[1])
 	print(sum_primes(n))
 
 	end = time()
 	print (end - start, "milliseconds.")
+
 
 # $ python3 10.py 2000000
 # 142913828922

@@ -101,20 +101,25 @@
 # 20849603980134001723930671666823555245252804609722
 # 53503534226472524250874054075591789781264330331690
 
+
 import sys
 from time import time
 from functools import reduce
 
+
 # returns the first n digits of the sum of a list of numbers
-def first_10_digit_of_sum(list, n):
-	print(str(reduce(lambda x, y: x + y, list))[:n])
+def first_10_digit_of_sum(list_number, n):
+	print(str(reduce(lambda x, y: x + y, list_number))[:n])
 	# list contains a list of numbers
 	# use reduce and lambda to create a function that sums up the list
 	# convert the sum to str
 	# print first n digits of the sum
 
+
 if __name__ == '__main__':
-	list = [
+	start = time()
+
+	list_number = [
 	37107287533902102798797998220837590246510135740250,
 	46376937677490009712648124896970078050417018260538,
 	74324986199524741059474233309513058123726617309629,
@@ -216,15 +221,12 @@ if __name__ == '__main__':
 	20849603980134001723930671666823555245252804609722,
 	53503534226472524250874054075591789781264330331690
 	]
-
 	n = int(sys.argv[1])
-
-	start = time()
-
-	first_10_digit_of_sum(list, n)
+	first_10_digit_of_sum(list_number, n)
 
 	end = time()
 	print (end - start, "milliseconds.")
+
 
 # $ python3 13.py 10
 # 5537376230

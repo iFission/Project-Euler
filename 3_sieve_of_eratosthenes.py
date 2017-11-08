@@ -4,10 +4,13 @@
 
 # using Eratosthenes sieve
 
+
 import sys
 from time import time
 
-def sieve(n):
+
+# implements sieve of eratosthenes, which returns a list of prime numbers below n
+def sieve_of_eratosthenes(n):
 	prime_list = [False] * 2 + [True] * (n - 1) # faster version of following, + to add arrays together
 	# create a list of n Trues, later marked False
 	# remaining list is all prime[index] = True
@@ -22,12 +25,12 @@ def sieve(n):
 		# print(p)
 	return prime_list
 
-if __name__ == '__main__':
-	n = int(sys.argv[1])
 
+if __name__ == '__main__':
 	start = time()
 
-	prime = sieve(n)
+	n = int(sys.argv[1])
+	prime = sieve_of_eratosthenes(n)
 	print([i for i in range(len(prime)) if prime[i]]) # list comprehension of following
 	# for i in range(n):
 	# 	if prime[i] == True:

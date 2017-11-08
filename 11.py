@@ -25,81 +25,91 @@
 
 # What is the greatest product of four adjacent numbers in the same direction (up, down, left, right, or diagonally) in the 20×20 grid?
 
+
 import sys
 from time import time
+from functools import reduce
 
-def product_list(list): # calculates the product of a list of numbers
+
+def get_product(list_number): # calculates the product of a list_number of numbers
+	# return reduce(lambda x, y : x * y, list_number)
 	product = 1
-	# print(list)
-	for i in list:
+	# print(list_number)
+	for i in list_number:
 		i = i[0]
 		# print(i)
 		product *= i
 		# print(product)
 	return product
 
-# only need 4 directions, as the other directions will generate the same list of numbers from the other side
+
+# only need 4 directions, as the other directions will generate the same list_number of numbers from the other side
 def product_u(matrix, x, y, n): # calculates the product of up direction
-	list = []
+	list_number = []
 	for i in range(n):
 		if x - i >= 0 : # check cell exists by ensuring x is at least 0
 		# if matrix[x - i][y]: # check cell exists
-			list.append([matrix[x - i][y]])
+			list_number.append([matrix[x - i][y]])
 			# print("appended" + str([matrix[x - i][y]]))
 		else: # when one of the cells don't exist, return None
 			return None
-	return list, product_list(list) # returns the product of the list if there are no cells that don't exist
+	return list_number, get_product(list_number) # returns the product of the list_number if there are no cells that don't exist
+
 
 def product_ur(matrix, x, y, n): # calculates the product of up-right direction
-	list = []
+	list_number = []
 	for i in range(n):
 		if x - i >= 0 and y + i < 20: # check cell exists, ensuring y is less than 20 (at most 19)
-			list.append([matrix[x - i][y + i]])
+			list_number.append([matrix[x - i][y + i]])
 		else: # when one of the cells don't exist, return None
 			return None
-	return list, product_list(list) # returns the product of the list if there are no cells that don't exist
+	return list_number, get_product(list_number) # returns the product of the list_number if there are no cells that don't exist
+
 
 def product_r(matrix, x, y, n): # calculates the product of right direction
-	list = []
+	list_number = []
 	for i in range(n):
 		if y + i < 20 and y + i < 20: # check cell exists
-			list.append([matrix[x][y + i]])
+			list_number.append([matrix[x][y + i]])
 		else: # when one of the cells don't exist, return None
 			return None
-	return list, product_list(list) # returns the product of the list if there are no cells that don't exist
+	return list_number, get_product(list_number) # returns the product of the list_number if there are no cells that don't exist
+
 
 def product_rd(matrix, x, y, n): # calculates the product of right down direction
-	list = []
+	list_number = []
 	for i in range(n):
 		if x + i < 20 and y + i < 20: # check cell exists
-			list.append([matrix[x + i][y + i]])
+			list_number.append([matrix[x + i][y + i]])
 		else: # when one of the cells don't exist, return None
 			return None
-	return list, product_list(list) # returns the list and the product of the list if there are no cells that don't exist
+	return list_number, get_product(list_number) # returns the list_number and the product of the list_number if there are no cells that don't exist
+
 
 def product_directions(matrix, x, y, n, directions):
-	list_max = []
+	list_number_max = []
 	product_max = 0
 	direction_max = ""
-	list = []
+	list_number = []
 	product = 0
 
 	for direction in directions:
 		if direction is "u":
 			if product_u(matrix, x, y, n) is not None:
-				list, product = product_u(matrix, x, y, n)
+				list_number, product = product_u(matrix, x, y, n)
 		if direction is "ur":
 			if product_ur(matrix, x, y, n) is not None:
-				list, product = product_ur(matrix, x, y, n)
+				list_number, product = product_ur(matrix, x, y, n)
 		if direction is "r":
 			if product_r(matrix, x, y, n) is not None:
-				list, product = product_r(matrix, x, y, n)
+				list_number, product = product_r(matrix, x, y, n)
 		if direction is "rd":
 			if product_rd(matrix, x, y, n) is not None:
-				list, product = product_rd(matrix, x, y, n)
+				list_number, product = product_rd(matrix, x, y, n)
 		if product > product_max:
-			list_max, product_max = list, product
-	return list_max, product_max, direction_max
+			list_number_max, product_max = list_number, product
+	return list_number_max, product_max, direction_max
+
 
 def product_coordinate(n):
 	matrix = [
@@ -126,38 +136,38 @@ def product_coordinate(n):
 			]
 	directions = ["u", "ur", "r", "rd"]
 	x_max, y_max = 0, 0
-	list_max = []
+	list_number_max = []
 	product_max = 0
 	direction_max = ""
 
 	for x in range(len(matrix)): # len(matrix) returns the number of rows
 		for y in range(len(matrix[0])): # len(matrix[0]) returns the number of columns
-			list, product, direction = product_directions(matrix, x, y, n, directions)
+			list_number, product, direction = product_directions(matrix, x, y, n, directions)
 			if product > product_max:
-				x_max, y_max, list_max, product_max, direction_max = x, y, list, product, direction
+				x_max, y_max, list_number_max, product_max, direction_max = x, y, list_number, product, direction
 				# print("Max product occurs at ", x_max, y_max)
 				# print("The direction is " + direction_max)
-				# print("The numbers are ", list_max)
+				# print("The numbers are ", list_number_max)
 				# print("The product is ", product_max)
 
 	print("Max product occurs at ", x_max, y_max)
 	print("The direction is " + direction_max)
-	print("The numbers are ", list_max)
+	print("The numbers are ", list_number_max)
 	print("The product is ", product_max)
 
+
 if __name__ == '__main__':
-
-	n = int(sys.argv[1])
-
 	start = time()
 
+	n = int(sys.argv[1])
 	product_coordinate(n)
 
 	end = time()
 	print (end - start, "milliseconds.")
 
+# $ python3 11.py 4
 # Max product occurs at  15 3
 # The direction is
 # The numbers are  [[87], [97], [94], [89]]
 # The product is  70600674
-# 0.005517244338989258 milliseconds.
+# 0.005494117736816406 milliseconds.

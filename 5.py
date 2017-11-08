@@ -2,11 +2,17 @@
 
 # What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
 
+
 import sys
 from time import time
 
 
-def sieve(n):
+# finds the prime factors of all numbers from 1 to 20
+# calculate the LCM from the prime factors
+
+
+# implements sieve of eratosthenes, which returns a list of prime numbers below n
+def sieve_of_eratosthenes(n):
 	prime_list = [False] * 2 + [True] * (n - 1) # faster version of following, + to add arrays together
 	# create a list of n Trues, later marked False
 	# remaining list is all prime[index] = True
@@ -21,39 +27,44 @@ def sieve(n):
 		# print(p)
 	return prime_list
 
-def primefac(n, sieved):
-	factor = []
-	for i in range(len(sieved)):
-		# print((sieved))
-		# print("1", n, i)
-		while sieved[i] and n % i == 0 and n > 1:
-			# print(n, i)
-			factor += [i]
-			n //= i
-	return factor
 
-def LCM(n, sieved):
+def get_prime_factors(n, prime_list):
+	prime_factors = []
+	for i in range(len(prime_list)):
+		# print((prime_list))
+		# print("1", n, i)
+		while prime_list[i] and n % i == 0 and n > 1:
+			# print(n, i)
+			prime_factors += [i]
+			n //= i
+	return prime_factors
+
+
+# finds the lowest common multiple by filtering through list of prime numbers and n
+def get_LCM(n, prime_list):
 	LCM = []
-	for i in range(len(sieved)):
-		primefacd = primefac(i, sieved)
+	for i in range(len(prime_list)):
+		prime_factors = get_prime_factors(i, prime_list)
 		x = 1
 		for j in range(1, i + 1):
-			# print(j, primefacd.count(j), LCM.count(j))
-			while primefacd.count(j) > LCM.count(j):
+			# print(j, prime_factors.count(j), LCM.count(j))
+			while prime_factors.count(j) > LCM.count(j):
 				LCM += [j]
-				# print(primefacd.count(j), LCM.count(j))
+				# print(prime_factors.count(j), LCM.count(j))
 	return LCM
 
-def product(n):
-	product = 1
-	sieved = sieve(n)
-	LCMd = LCM(n, sieved)
 
-	for i in range(len(LCMd)):
-		product *= LCMd[i]
+def get_product(n):
+	product = 1
+	prime_list = sieve_of_eratosthenes(n)
+	LCM = get_LCM(n, prime_list)
+
+	for i in range(len(LCM)):
+		product *= LCM[i]
 	return product
 
-def product2(n): # wont return result when run with python2 when n = 43, as the product2 is bigger than max int, 9223372036854775807/219060189739591200=42.104...,
+
+def get_product_2(n): # wont return result when run with python2 when n = 43, as the product2 is bigger than max int, 9223372036854775807/219060189739591200=42.104...,
 	product1 = 1
 	product2 = 1
 	for i in range(1, n + 1):
@@ -63,18 +74,25 @@ def product2(n): # wont return result when run with python2 when n = 43, as the 
 		product1 = product2
 	return product2
 
+
 if __name__ == '__main__':
 
 	n = int(sys.argv[1])
 
 	start = time()
-	productd = product(n)
+	productd = get_product(n)
 	print(productd)
 	end = time()
 	print (end - start, "milliseconds.")
 
 	start = time()
-	productd = product2(n)
+	productd = get_product_2(n)
 	print(productd)
 	end = time()
 	print (end - start, "milliseconds.")
+
+# $ python3 5.py  20
+# 232792560
+# 0.00016164779663085938 milliseconds.
+# 232792560
+# 1.1920928955078125e-05 milliseconds.

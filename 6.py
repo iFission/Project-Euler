@@ -8,14 +8,16 @@
 
 # Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
 
+
 import sys
 from time import time
 
+
 # implementation using objects
-class ss(object):
-	"""docstring for ss"""
+class SumSquare(object):
+	"""docstring for SumSquare"""
 	def __init__(self, n):
-		super(ss, self).__init__()
+		super(SumSquare, self).__init__()
 		self.n = n
 
 	def sum_square(self):
@@ -34,6 +36,7 @@ class ss(object):
 		print(self.square_sum() - self.sum_square())
 		return
 
+
 # normal implementation
 def sum_square(n):
 	sum = 0
@@ -41,21 +44,25 @@ def sum_square(n):
 		sum += i ** 2
 	return sum
 
+
 def square_sum(n):
 	sum = 0
 	for i in range(1, n + 1):
 		sum += i
 	return sum ** 2
 
+
 def diff(n):
 	print(square_sum(n) - sum_square(n))
 	return
+
+
 if __name__ == '__main__':
 
 	n = int(sys.argv[1])
 
 	start = time()
-	ss(n).diff()
+	SumSquare(n).diff()
 	end = time()
 	print (end - start, "milliseconds.")
 
