@@ -74,6 +74,7 @@ if __name__ == '__main__':
 	end = time()
 	print (end - start, "milliseconds.")
 
+
 # overall normal implementation faster than object implementation
 # $ python3 6.py 100
 # 25164150

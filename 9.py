@@ -51,6 +51,7 @@ if __name__ == '__main__':
 	end = time()
 	print (end - start, "milliseconds.")
 
+
 # $ python3 9.py 300
 # 31875000
 # 0.8041641712188721 milliseconds.

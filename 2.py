@@ -48,6 +48,7 @@ if __name__ == '__main__':
 	end = time()
 	print (end - start, "milliseconds.")
 
+
 # $ python3 2.py
 # [0, 2, 8, 34, 144, 610, 2584, 10946, 46368, 196418, 832040, 3524578]
 # 4613732
