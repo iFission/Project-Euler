@@ -5,7 +5,8 @@
 import sys
 from time import time
 
-def sieve(n):
+# implements sieve of eratosthenes, which returns a list of prime numbers below n
+def sieve_of_eratosthenes(n):
 	prime_list = [False] * 2 + [True] * (n - 1) # faster version of following, + to add arrays together
 	# create a list of n Trues, later marked False
 	# remaining list is all prime[index] = True
@@ -20,30 +21,32 @@ def sieve(n):
 		# print(p)
 	return prime_list
 
+
 def nth_prime(x, y): # first n defines the range to search through, second n defines the desired nth position of prime
-
-	prime = sieve(x)
-
+	prime_list = sieve_of_eratosthenes(x)
 	position = 0
-	for i in range(len(prime)):
-		if prime[i]:
+	i = 0
+
+	while position < y:
+		i += 1
+		if prime_list[i]:
 			position += 1 # increse the counter if prime is detected
 			# print(position)
-		if position == y: # when the counter matches desired position
-			# if i is None:
-			print(i)
-			return i # return the value of the prime
-		if i == len(prime) - 1:
+		if i == len(prime_list) - 1:
 			x *= 10 # expand the range, search again
-			nth_prime(x, y)
+			prime_list = sieve_of_eratosthenes(x)
+	return i # return the value of the prime
 
 if __name__ == '__main__':
-
-	x = int(sys.argv[1])
-
 	start = time()
 
-	nth_prime(x, x)
+	x = int(sys.argv[1])
+	print(nth_prime(x, x))
 
 	end = time()
 	print (end - start, "milliseconds.")
+
+
+# $ python3 7.py 10001
+# 104743
+# 0.16663813591003418 milliseconds.
