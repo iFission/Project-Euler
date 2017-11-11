@@ -58,16 +58,19 @@ def diff(n):
 
 
 if __name__ == '__main__':
+	start = time()
 
 	n = int(sys.argv[1])
-
-	start = time()
 	SumSquare(n).diff()
+
 	end = time()
 	print (end - start, "milliseconds.")
 
+
 	start = time()
+
 	diff(n)
+
 	end = time()
 	print (end - start, "milliseconds.")
 

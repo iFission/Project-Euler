@@ -22,9 +22,9 @@ def get_prime_factors(n):
 	for x in range(3, int(m.sqrt(n))): # stop at the square root of n
 		# print("x is: {x}".format(x=x))
 		if n % x == 0 and is_prime(x):
-			prime_factors.append(x)
+			prime_factors.append(x) # add the number x to the list of prime factors
 			n /= x # divide n by x
-	prime_factors.append(int(n))
+	prime_factors.append(int(n)) # add the last indivisible number as prime
 	return prime_factors
 
 

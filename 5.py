@@ -28,9 +28,11 @@ def sieve_of_eratosthenes(n):
 	return prime_list
 
 
+# returns a list of prime factors for n, by dividing n successively by increasing prime numbers
+# checks for prime number using prime_list from sieve_of_eratosthenes
 def get_prime_factors(n, prime_list):
 	prime_factors = []
-	for i in range(len(prime_list)):
+	for i in range(n + 1): # loops through 0 to n, accounts for the case when n is a prime number
 		# print((prime_list))
 		# print("1", n, i)
 		while prime_list[i] and n % i == 0 and n > 1:
@@ -41,14 +43,15 @@ def get_prime_factors(n, prime_list):
 
 
 # finds the lowest common multiple by filtering through list of prime numbers and n
+# n will take the range of (2, n + 1), > 2, 3, ..., n
 def get_LCM(n, prime_list):
 	LCM = []
-	for i in range(len(prime_list)):
+	for i in range(2, n + 1):
 		prime_factors = get_prime_factors(i, prime_list)
 		x = 1
 		for j in range(1, i + 1):
 			# print(j, prime_factors.count(j), LCM.count(j))
-			while prime_factors.count(j) > LCM.count(j):
+			while prime_factors.count(j) > LCM.count(j): # keep adding prime factor j until LCM has the same number as i
 				LCM += [j]
 				# print(prime_factors.count(j), LCM.count(j))
 	return LCM
@@ -64,9 +67,10 @@ def get_product(n):
 	return product
 
 
+# find the product by iterating through 1 to n + 1, making sure the product2 is divisible by i, by adding the previous product1 until product2 is a multiple
 def get_product_2(n): # wont return result when run with python2 when n = 43, as the product2 is bigger than max int, 9223372036854775807/219060189739591200=42.104...,
-	product1 = 1
-	product2 = 1
+	product1 = 1 # placeholder for the first product
+	product2 = 1 # placeholder for the second product
 	for i in range(1, n + 1):
 		while product2 % i is not 0: # when the product cant divide the new number evenly, add itself to ensure it still can divide the old numbers
 			product2 += product1
@@ -76,18 +80,21 @@ def get_product_2(n): # wont return result when run with python2 when n = 43, as
 
 
 if __name__ == '__main__':
+	start = time()
 
 	n = int(sys.argv[1])
+	product = get_product(n)
+	print(product)
 
-	start = time()
-	productd = get_product(n)
-	print(productd)
 	end = time()
 	print (end - start, "milliseconds.")
 
+
 	start = time()
-	productd = get_product_2(n)
-	print(productd)
+
+	product = get_product_2(n)
+	print(product)
+
 	end = time()
 	print (end - start, "milliseconds.")
 

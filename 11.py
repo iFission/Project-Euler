@@ -165,6 +165,7 @@ if __name__ == '__main__':
 	end = time()
 	print (end - start, "milliseconds.")
 
+
 # $ python3 11.py 4
 # Max product occurs at  15 3
 # The direction is
