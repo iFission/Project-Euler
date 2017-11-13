@@ -19,9 +19,9 @@ def is_prime(n): # ensure n only has itself as a factor
 # returns a list of prime factors for n, by dividing n successively by increasing prime numbers
 def get_prime_factors(n):
 	prime_factors = []
-	for x in range(3, int(m.sqrt(n))): # stop at the square root of n
+	for x in range(2, int(m.sqrt(n))): # stop at the square root of n
 		# print("x is: {x}".format(x=x))
-		if n % x == 0 and is_prime(x):
+		while n % x == 0 and is_prime(x):
 			prime_factors.append(x) # add the number x to the list of prime factors
 			n /= x # divide n by x
 	prime_factors.append(int(n)) # add the last indivisible number as prime
@@ -31,7 +31,7 @@ def get_prime_factors(n):
 if __name__ == '__main__':
 	start = time()
 
-	print(get_prime_factors(6008514751435))
+	print(get_prime_factors(6008514751432))
 
 	end = time()
 	print (end - start, "milliseconds.")
