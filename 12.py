@@ -18,6 +18,8 @@
 
 import sys
 from time import time
+import math as m
+
 
 
 # calculate nth triangle number
@@ -52,7 +54,7 @@ def sieve_of_eratosthenes(n):
 # checks for prime number using prime_list from sieve_of_eratosthenes
 def get_prime_factors(n, prime_list):
 	prime_factors = []
-	for i in range(n + 1): # loops through 0 to n, accounts for the case when n is a prime number
+	for i in range(2, int(m.sqrt(n))): # loops through 0 to n, accounts for the case when n is a prime number
 		# print((prime_list))
 		# print("1", n, i)
 		# print(i)
@@ -118,6 +120,13 @@ if __name__ == '__main__':
 # 96
 # triangle number is 76576500 limit is 81920000
 # [2, 2, 3, 3, 5, 5, 5, 7, 11, 13, 17]
+
+# with sqrt range
+# triangle number is 76576500 limit is 81920000
+# [2, 2, 3, 3, 5, 5, 5, 7, 11, 13, 17]
+# 576
+# 76576500
+# 51410.40483188629 milliseconds.
 # 576
 # 76576500
 # 69472.91197299957 milliseconds.
