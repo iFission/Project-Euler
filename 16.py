@@ -25,6 +25,21 @@ if __name__ == '__main__':
 	print (end - start, "milliseconds.")
 
 
+	start = time()
+
+	print(sum(map(int, list(str(2**n)))))
+	# 2**n calculates the number
+	# str(2**n) converts to str, to make into a list, as int is not iterable
+	# moke into a list of strings
+	# convert every entry to int
+	# sum the list of int
+
+	end = time()
+	print (end - start, "milliseconds.")
+
+
 # $ python3 16.py 1000
 # 2^1000 is 10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046474983581941267398767559165543946077062914571196477686542167660429831652624386837205668069376, sum is 1366
-# 0.00017023086547851562 milliseconds.
+# 0.00015687942504882812 milliseconds.
+# 1366
+# 8.606910705566406e-05 milliseconds.
